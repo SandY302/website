@@ -1,198 +1,1022 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="Sandeep Rajesh Prajapati - Infrastructure & Security Engineer | Endpoint Security Engineer"
-  >
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Sandeep Prajapati | Infrastructure & Security Engineer</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta
+    name="description"
+    content="Sandeep Prajapati — Infrastructure & Security Engineer specializing in Endpoint Security, DLP, Microsoft Security, Cloud Infrastructure and IT Operations."
+  />
 
+  <meta
+    name="keywords"
+    content="Sandeep Prajapati, Security Engineer, Endpoint Security, DLP Engineer, Infrastructure Security, Microsoft Security, Intune, Trellix DLP, Zscaler, AWS, Azure, Active Directory, PowerShell"
+  />
+
+  <meta name="author" content="Sandeep Prajapati" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet"
-  >
+  />
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #05080b;
+      --bg-soft: #091015;
+      --card: rgba(12, 20, 25, 0.82);
+      --card-hover: rgba(16, 28, 34, 0.95);
 
-  <script
-    src="https://kit.fontawesome.com/b8f22bf465.js"
-    crossorigin="anonymous">
-  </script>
+      --green: #55f28a;
+      --green-dark: #1fb95a;
+      --cyan: #51d9ff;
+      --blue: #6da7ff;
+
+      --text: #edf7f1;
+      --muted: #91a39a;
+      --border: rgba(111, 255, 157, 0.13);
+
+      --max-width: 1180px;
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html {
+      background: var(--bg);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(43, 255, 122, 0.07), transparent 28%),
+        radial-gradient(circle at 85% 30%, rgba(50, 190, 255, 0.06), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 11, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      color: var(--green);
+      font-size: 15px;
+    }
+
+    .brand span {
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .terminal-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .terminal-label::before {
+      content: "●";
+      color: var(--green);
+      text-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero h2 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(18px, 2vw, 25px);
+      font-weight: 500;
+      color: var(--cyan);
+      margin-bottom: 25px;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-description strong {
+      color: var(--text);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      color: #031007;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 28px rgba(85, 242, 138, .25);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: var(--text);
+      background: rgba(255,255,255,.02);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* TERMINAL CARD */
+
+    .terminal {
+      background: rgba(7, 14, 18, .9);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+
+    .terminal-head {
+      padding: 12px 15px;
+      display: flex;
+      gap: 7px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ff5f57;
+    }
+
+    .dot:nth-child(2) { background: #febc2e; }
+    .dot:nth-child(3) { background: #28c840; }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: #b6c7be;
+    }
+
+    .terminal-line {
+      margin-bottom: 12px;
+    }
+
+    .terminal-line .command {
+      color: var(--green);
+    }
+
+    .terminal-line .value {
+      color: var(--cyan);
+    }
+
+    .status {
+      color: var(--green);
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 105px 0;
+      border-top: 1px solid rgba(255,255,255,.035);
+    }
+
+    .section-header {
+      margin-bottom: 45px;
+    }
+
+    .section-number {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .section-description {
+      max-width: 720px;
+      margin-top: 13px;
+      color: var(--muted);
+    }
+
+    /* SNAPSHOT */
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .snapshot-card {
+      padding: 25px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .snapshot-value {
+      color: var(--green);
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .snapshot-label {
+      color: var(--muted);
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: .25s ease;
+    }
+
+    .skill-card:hover {
+      background: var(--card-hover);
+      border-color: rgba(85,242,138,.3);
+      transform: translateY(-3px);
+    }
+
+    .skill-card h3 {
+      color: var(--green);
+      margin-bottom: 17px;
+      font-size: 17px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      padding: 7px 9px;
+      border-radius: 6px;
+      color: #b9c8c0;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    /* EXPERIENCE */
+
+    .timeline {
+      position: relative;
+      max-width: 950px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .experience {
+      position: relative;
+      padding-left: 42px;
+      margin-bottom: 50px;
+    }
+
+    .experience::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--green);
+      box-shadow: 0 0 14px rgba(85,242,138,.35);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+
+    .experience h3 {
+      font-size: 20px;
+    }
+
+    .company {
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+    }
+
+    .date {
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .experience ul {
+      margin-top: 14px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .experience li {
+      margin-bottom: 8px;
+    }
+
+    /* ACHIEVEMENTS */
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .achievement {
+      padding: 28px;
+      background: linear-gradient(
+        135deg,
+        rgba(85,242,138,.06),
+        rgba(81,217,255,.025)
+      );
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .achievement-number {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .achievement h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .achievement p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CASE STUDY */
+
+    .case-study {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 30px;
+    }
+
+    .case-sidebar,
+    .case-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+
+    .case-sidebar h3 {
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .case-meta {
+      margin-bottom: 18px;
+    }
+
+    .case-meta small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+    }
+
+    .case-meta strong {
+      font-size: 14px;
+    }
+
+    .case-content h3 {
+      margin-bottom: 12px;
+    }
+
+    .case-content p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .case-content ul {
+      color: var(--muted);
+      padding-left: 20px;
+    }
+
+    .case-content li {
+      margin-bottom: 8px;
+    }
+
+    /* ARCHITECTURE */
+
+    .architecture {
+      padding: 38px 20px;
+      background: #050b0e;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+    }
+
+    .architecture-flow {
+      min-width: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .arch-box {
+      padding: 18px;
+      min-width: 135px;
+      text-align: center;
+      border: 1px solid rgba(85,242,138,.22);
+      background: rgba(85,242,138,.035);
+      border-radius: 10px;
+    }
+
+    .arch-box strong {
+      display: block;
+      color: var(--green);
+      font-size: 13px;
+    }
+
+    .arch-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    .arrow {
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    /* PROJECTS */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      padding: 27px;
+      min-height: 275px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(85,242,138,.3);
+    }
+
+    .project-icon {
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .project h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .project .tags {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    /* CERTIFICATIONS */
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cert {
+      padding: 25px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .cert-badge {
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .cert h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .cert p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* BUSINESS IMPACT */
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .impact {
+      padding: 26px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .impact h3 {
+      color: var(--green);
+      font-size: 15px;
+      margin-bottom: 9px;
+    }
+
+    .impact p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 70px;
+      border-radius: 24px;
+      border: 1px solid rgba(85,242,138,.18);
+      background:
+        radial-gradient(circle at 80% 20%, rgba(85,242,138,.1), transparent 35%),
+        linear-gradient(135deg, rgba(85,242,138,.055), rgba(81,217,255,.025));
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-bottom: 14px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    .cta .buttons {
+      justify-content: center;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-code {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .case-study {
+        grid-template-columns: 1fr;
+      }
+
+      .snapshot-grid,
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-grid,
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .skills-grid,
+      .achievement-grid,
+      .snapshot-grid,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .experience-header {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .cta {
+        padding: 40px 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="scanline"></div>
-
   <!-- ================= NAVIGATION ================= -->
 
-  <header class="nav">
+  <nav>
+    <div class="container nav-inner">
 
-    <a class="brand" href="#home">
-      SP<span>_</span>
-    </a>
+      <a href="#home" class="brand">
+        sandeep<span>@</span>security
+      </a>
 
-    <button class="menu-btn" aria-label="Open menu">
-      ☰
-    </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#alignment">Alignment</a>
-      <a href="#signals">Signals</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-  </header>
+    </div>
+  </nav>
 
 
-  <main id="home">
+  <!-- ================= HERO ================= -->
 
-    <!-- ================= HERO ================= -->
+  <main>
 
-    <section class="hero section">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
 
-      <div class="hero-grid">
+        <div>
 
-        <div class="hero-copy">
-
-          <div class="terminal-prompt">
-            $ whoami
+          <div class="terminal-label">
+            $ Infrastructure & Security
           </div>
 
-          <p class="eyebrow">
-            INFRASTRUCTURE &amp; SECURITY
-          </p>
-
           <h1>
-            Hi, I'm <span>Sandeep<br>Prajapati</span>
+            Sandeep<br />
+            <span>Prajapati</span>
           </h1>
 
           <h2>
-            &lt;Endpoint Security Engineer /&gt;
+            Infrastructure & Security Engineer
           </h2>
 
-          <p class="hero-text">
-            Information Security professional focused on Data Loss Prevention,
-            Endpoint Security, Device Control and Information Protection.
+          <p class="hero-description">
+            Security and Infrastructure professional specializing in
+            <strong>Endpoint Security, DLP, Microsoft Security, Cloud Infrastructure</strong>
+            and enterprise IT operations.
           </p>
 
-          <div class="hero-actions">
+          <div class="buttons">
 
-            <a class="btn primary" href="#contact">
-              Let's Connect <span>→</span>
+            <!-- Replace resume.pdf with your actual resume file -->
+            <a
+              href="resume.pdf"
+              class="btn btn-primary"
+              target="_blank"
+            >
+              Download Resume
             </a>
 
-            <a class="btn secondary" href="mailto:sp38740@gmail.com">
-              Email Me
+            <!-- Replace with your actual LinkedIn -->
+            <a
+              href="https://www.linkedin.com/"
+              class="btn btn-outline"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
             </a>
 
-          </div>
+            <!-- Replace with your actual GitHub -->
+            <a
+              href="https://github.com/"
+              class="btn btn-outline"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
 
-          <div class="stats">
-
-            <div>
-              <strong>3+</strong>
-              <span>Years Experience</span>
-            </div>
-
-            <div>
-              <strong>3</strong>
-              <span>Certifications</span>
-            </div>
-
-            <div>
-              <strong>DLP</strong>
-              <span>Security Focus</span>
-            </div>
+            <a href="#contact" class="btn btn-outline">
+              Contact
+            </a>
 
           </div>
 
         </div>
 
 
-        <!-- ================= TERMINAL ================= -->
-
-        <div class="terminal-card">
+        <div class="terminal">
 
           <div class="terminal-head">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-            <b>
-              security@portfolio:~
-            </b>
-
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
 
           <div class="terminal-body">
 
-            <p>
-              <span class="green">$</span> cat profile.txt
-            </p>
+            <div class="terminal-line">
+              <span class="command">$ whoami</span>
+            </div>
 
-            <p class="muted">
-              NAME:
-              <b>Sandeep Rajesh Prajapati</b>
-            </p>
+            <div class="terminal-line">
+              <span class="value">
+                Sandeep Prajapati
+              </span>
+            </div>
 
-            <p class="muted">
-              ROLE:
-              <b>Infrastructure &amp; Security Engineer</b>
-            </p>
+            <br />
 
-            <p class="muted">
-              FOCUS:
-              <b>DLP / Endpoint Security</b>
-            </p>
+            <div class="terminal-line">
+              <span class="command">$ specialization</span>
+            </div>
 
-            <p class="muted">
-              LOCATION:
-              <b>Mumbai, India</b>
-            </p>
+            <div class="terminal-line">
+              Endpoint Security / DLP
+            </div>
 
-            <br>
+            <div class="terminal-line">
+              Microsoft Security / Cloud
+            </div>
 
-            <p>
-              <span class="green">$</span> security_status
-            </p>
+            <div class="terminal-line">
+              Infrastructure / Automation
+            </div>
 
-            <p class="status">
-              <span>●</span> SYSTEM SECURE
-            </p>
+            <br />
 
-            <p class="muted">
-              DLP policies ........ ACTIVE
-            </p>
+            <div class="terminal-line">
+              <span class="command">$ security_status</span>
+            </div>
 
-            <p class="muted">
-              Endpoint controls ... ACTIVE
-            </p>
+            <div class="terminal-line">
+              <span class="status">
+                ● OPERATIONAL
+              </span>
+            </div>
 
-            <p class="muted">
-              Threat monitoring ... ACTIVE
-            </p>
+            <br />
 
-            <br>
+            <div class="terminal-line">
+              <span class="command">$ mission</span>
+            </div>
 
-            <p class="cursor">
-              $ <span></span>
-            </p>
+            <div class="terminal-line">
+              Reduce risk. Protect data.
+            </div>
 
+            <div class="terminal-line">
+              Improve enterprise security.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= EXECUTIVE SNAPSHOT ================= -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">01 / EXECUTIVE SNAPSHOT</div>
+
+          <h2 class="section-title">
+            Security expertise with an<br />
+            infrastructure mindset.
+          </h2>
+
+          <p class="section-description">
+            I work at the intersection of security and IT infrastructure,
+            focusing on practical security controls that protect users,
+            endpoints, data and enterprise environments.
+          </p>
+        </div>
+
+
+        <div class="snapshot-grid">
+
+          <div class="snapshot-card">
+            <div class="snapshot-value">3+</div>
+            <div class="snapshot-label">
+              Years of Professional Experience
+            </div>
+          </div>
+
+          <div class="snapshot-card">
+            <div class="snapshot-value">DLP</div>
+            <div class="snapshot-label">
+              Primary Security Specialization
+            </div>
+          </div>
+
+          <div class="snapshot-card">
+            <div class="snapshot-value">Cloud</div>
+            <div class="snapshot-label">
+              AWS / Azure Infrastructure
+            </div>
+          </div>
+
+          <div class="snapshot-card">
+            <div class="snapshot-value">IT Security</div>
+            <div class="snapshot-label">
+              Infrastructure & Security
+            </div>
           </div>
 
         </div>
@@ -202,134 +1026,88 @@
     </section>
 
 
-    <!-- ================= ABOUT ================= -->
+    <!-- ================= CORE EXPERTISE ================= -->
 
-    <section id="about" class="section">
+    <section id="skills">
 
-      <div class="section-label">
-        01 / ABOUT
-      </div>
+      <div class="container">
 
-      <h2 class="section-title">
-        Security is not a feature.<br>
-        <span>It's a mindset.</span>
-      </h2>
+        <div class="section-header">
+          <div class="section-number">02 / CORE EXPERTISE</div>
 
-      <div class="about-grid">
+          <h2 class="section-title">
+            Technical Skills & Security Expertise
+          </h2>
 
-        <p>
-          Information Security professional with experience in Data Loss
-          Prevention (DLP), Endpoint Security, Device Control, and Information
-          Protection. Skilled in Trellix DLP, Microsoft and Zscaler, including
-          policy creation, incident investigation, policy tuning, data
-          classification, compliance support, and stakeholder collaboration.
-        </p>
+          <p class="section-description">
+            Enterprise technologies and security capabilities across endpoint,
+            information protection, Microsoft, cloud and infrastructure.
+          </p>
+        </div>
 
-        <div class="info-box">
 
-          <div>
-            <span>Current Role</span>
-            <b>Infrastructure Security Analyst</b>
+        <div class="skills-grid">
+
+          <div class="skill-card">
+
+            <h3>Endpoint Security</h3>
+
+            <div class="tags">
+              <span class="tag">DLP Incident Investigation & Response</span>
+              <span class="tag">Endpoint, Email & Web DLP</span>
+              <span class="tag">Data Classification & Protection</span>
+              <span class="tag">DLP Policy Design & Management</span>
+            </div>
+
           </div>
 
-          <div>
-            <span>Company</span>
-            <b>Anzen Technologies</b>
+
+          <div class="skill-card">
+
+            <h3>Microsoft Security</h3>
+
+            <div class="tags">
+              <span class="tag">Microsoft Intune & Device Management</span>
+              
+              <span class="tag">Active Directory & Identity Security</span>
+              <span class="tag">PowerShell & Security Automation</span>
+              <span class="tag">Endpoint Security & Hardening</span>
+            </div>
+
           </div>
 
-          <div>
-            <span>Location</span>
-            <b>Mumbai, India</b>
+
+          <div class="skill-card">
+
+            <h3>Cloud Infrastructure</h3>
+
+            <div class="tags">
+              <span class="tag">AWS EC2</span>
+              <span class="tag">AWS IAM</span>
+              <span class="tag">AWS VPC</span>
+              <span class="tag">AWS S3</span>
+              <span class="tag">AWS CLI</span>
+              
+              
+            </div>
+
           </div>
 
-          <div>
-            <span>Certification</span>
-            <b>ISC² Certified in Cybersecurity</b>
+
+          <div class="skill-card">
+
+            <h3>IT Infrastructure </h3>
+
+            <div class="tags">
+              <span class="tag">Problem Management</span>
+              <span class="tag">Windows Servers</span>
+              <span class="tag">Application Control</span>
+              <span class="tag">Scalefusion</span>
+            
+            </div>
+
           </div>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= SKILLS ================= -->
-
-    <section id="skills" class="section">
-
-      <div class="section-label">
-        02 / EXPERTISE
-      </div>
-
-      <h2 class="section-title">
-        Technical <span>Arsenal</span>
-      </h2>
-
-      <div class="skills-grid">
-
-        <div class="skill-card">
-          <div class="icon">◈</div>
-          <h3>Trellix DLP</h3>
-          <p>
-            Policy creation, optimization, incident investigation and tuning.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">▣</div>
-          <h3>Endpoint Security</h3>
-          <p>
-            Endpoint protection, hardening and information security controls.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">⌁</div>
-          <h3>Device Control</h3>
-          <p>
-            Control and protection of endpoint devices and data movement.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">✓</div>
-          <h3>Application Whitelisting</h3>
-          <p>
-            Application control and endpoint protection support.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">✉</div>
-          <h3>Email &amp; Web DLP</h3>
-          <p>
-            DLP policy management across email, web and endpoint channels.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">⌘</div>
-          <h3>Zscaler</h3>
-          <p>
-            Policy configuration and optimization for secure access.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">◉</div>
-          <h3>Data Classification</h3>
-          <p>
-            Support for classification and information protection initiatives.
-          </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="icon">⚙</div>
-          <h3>Incident Investigation</h3>
-          <p>
-            Alert investigation, remediation coordination and reporting.
-          </p>
         </div>
 
       </div>
@@ -339,101 +1117,391 @@
 
     <!-- ================= EXPERIENCE ================= -->
 
-    <section id="experience" class="section">
+    <section id="experience">
 
-      <div class="section-label">
-        03 / EXPERIENCE
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">03 / EXPERIENCE</div>
+
+          <h2 class="section-title">
+            Professional Experience
+          </h2>
+
+          <p class="section-description">
+            Experience across cybersecurity, endpoint management,
+            infrastructure and enterprise IT environments.
+          </p>
+        </div>
+
+
+        <div class="timeline">
+
+          <!-- EXPERIENCE 1 -->
+
+          <article class="experience">
+
+            <div class="experience-header">
+
+              <div>
+                <h3>Infrastructure / Security Engineer</h3>
+
+                <div class="company">
+                  Anzen Technologies
+                </div>
+              </div>
+
+              <div class="date">
+                2022 — Present
+              </div>
+
+            </div>
+
+            <ul>
+
+              <li>
+                Manage enterprise DLP policies across Endpoint, Email and Web channels.
+              </li>
+
+              <li>
+                Investigate DLP incidents and coordinate remediation with relevant stakeholders.
+              </li>
+
+              <li>
+                Perform policy tuning and rule optimization to improve security control effectiveness.
+              </li>
+
+              <li>
+                Support endpoint security, device control and application control initiatives.
+              </li>
+
+              <li>
+                Work with infrastructure and security teams on enterprise security requirements.
+              </li>
+
+            </ul>
+
+          </article>
+
+
+          <!-- EXPERIENCE 2 -->
+
+          <article class="experience">
+
+            <div class="experience-header">
+
+              <div>
+                <h3>Infrastructure / IT Operations</h3>
+
+                <div class="company">
+                  Team Computers
+                </div>
+              </div>
+
+              <div class="date">
+                Previous Role
+              </div>
+
+            </div>
+
+            <ul>
+
+              <li>
+                Supported enterprise endpoint and infrastructure operations.
+              </li>
+
+              <li>
+                Worked with Windows environments, endpoint management and user support.
+              </li>
+
+              <li>
+                Supported infrastructure troubleshooting and operational security requirements.
+              </li>
+
+            </ul>
+
+          </article>
+
+
+          <!-- EXPERIENCE 3 -->
+
+          <article class="experience">
+
+            <div class="experience-header">
+
+              <div>
+                <h3>IT Infrastructure</h3>
+
+                <div class="company">
+                  Wipro
+                </div>
+              </div>
+
+              <div class="date">
+                Previous Role
+              </div>
+
+            </div>
+
+            <ul>
+
+              <li>
+                Supported enterprise IT infrastructure and operational processes.
+              </li>
+
+              <li>
+                Worked with users, systems and infrastructure teams to resolve technical issues.
+              </li>
+
+            </ul>
+
+          </article>
+
+        </div>
+
       </div>
 
-      <h2 class="section-title">
-        Professional <span>Journey</span>
-      </h2>
+    </section>
 
-      <div class="timeline">
 
-        <article class="job current">
+    <!-- ================= KEY ACHIEVEMENTS ================= -->
 
-          <div class="job-date">
-            CURRENT
+    <section>
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">04 / KEY ACHIEVEMENTS</div>
+
+          <h2 class="section-title">
+            What I bring to an organization
+          </h2>
+        </div>
+
+
+        <div class="achievement-grid">
+
+          <div class="achievement">
+
+            <div class="achievement-number">01 / DLP</div>
+
+            <h3>Enterprise DLP Operations</h3>
+
+            <p>
+              Managed DLP controls across endpoint, email and web channels,
+              including policy creation, testing, tuning and incident investigation.
+            </p>
+
           </div>
 
-          <div class="job-content">
 
-            <h3>
-              Infrastructure Security Analyst
-            </h3>
+          <div class="achievement">
 
-            <h4>
-              Anzen Technologies
-            </h4>
+            <div class="achievement-number">02 / ENDPOINT</div>
+
+            <h3>Endpoint Security Improvement</h3>
+
+            <p>
+              Strengthened endpoint protection through device control,
+              application control and security configuration initiatives.
+            </p>
+
+          </div>
+
+
+          <div class="achievement">
+
+            <div class="achievement-number">03 / OPERATIONS</div>
+
+            <h3>Security Operations</h3>
+
+            <p>
+              Investigated security alerts, identified policy gaps and
+              coordinated remediation with technical and business stakeholders.
+            </p>
+
+          </div>
+
+
+          <div class="achievement">
+
+            <div class="achievement-number">04 / AUTOMATION</div>
+
+            <h3>Infrastructure Automation</h3>
+
+            <p>
+              Used PowerShell and AWS CLI to automate repetitive operational
+              tasks and improve infrastructure administration.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FEATURED CASE STUDY ================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">05 / FEATURED CASE STUDY</div>
+
+          <h2 class="section-title">
+            Enterprise DLP Implementation
+          </h2>
+
+          <p class="section-description">
+            A practical security-control lifecycle covering policy design,
+            implementation, monitoring, investigation and continuous improvement.
+          </p>
+        </div>
+
+
+        <div class="case-study">
+
+          <aside class="case-sidebar">
+
+            <h3>Project Overview</h3>
+
+            <div class="case-meta">
+              <small>Domain</small>
+              <strong>Information Protection</strong>
+            </div>
+
+            <div class="case-meta">
+              <small>Primary Technology</small>
+              <strong>Trellix DLP</strong>
+            </div>
+
+            <div class="case-meta">
+              <small>Security Channels</small>
+              <strong>Endpoint / Email / Web</strong>
+            </div>
+
+            <div class="case-meta">
+              <small>Focus</small>
+              <strong>Data Protection & Risk Reduction</strong>
+            </div>
+
+          </aside>
+
+
+          <div class="case-content">
+
+            <h3>The Challenge</h3>
+
+            <p>
+              Enterprise environments need effective controls to prevent
+              sensitive information from being exposed through endpoints,
+              email and web channels while minimizing unnecessary security alerts.
+            </p>
+
+
+            <h3>My Approach</h3>
 
             <ul>
-              <li>Manage enterprise DLP policies across Endpoint, Email, and Web.</li>
-              <li>Configure and optimize Trellix DLP and Zscaler policies.</li>
-              <li>Investigate DLP incidents and coordinate remediation.</li>
-              <li>Reduce false positives through policy tuning.</li>
-              <li>Support data classification and compliance initiatives.</li>
-              <li>Implement Device Control and Application Whitelisting.</li>
-              <li>Prepare security reports and documentation.</li>
-              <li>Collaborate with SOC, infrastructure, and business teams.</li>
+
+              <li>
+                Created and configured DLP policies based on organizational requirements.
+              </li>
+
+              <li>
+                Performed policy testing before production implementation.
+              </li>
+
+              <li>
+                Investigated DLP incidents and identified root causes.
+              </li>
+
+              <li>
+                Tuned rules to improve detection accuracy and reduce false positives.
+              </li>
+
+              <li>
+                Coordinated remediation with infrastructure, security and business teams.
+              </li>
+
+              <li>
+                Continuously reviewed policy effectiveness based on operational findings.
+              </li>
+
             </ul>
 
           </div>
 
-        </article>
+        </div>
+
+      </div>
+
+    </section>
 
 
-        <article class="job">
+    <!-- ================= SECURITY ARCHITECTURE ================= -->
 
-          <div class="job-date">
-            OCT 2023 — SEP 2025
+    <section>
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">06 / SECURITY ARCHITECTURE</div>
+
+          <h2 class="section-title">
+            Data Protection Control Flow
+          </h2>
+
+          <p class="section-description">
+            A simplified view of how enterprise DLP controls can detect,
+            investigate and remediate data-protection events.
+          </p>
+        </div>
+
+
+        <div class="architecture">
+
+          <div class="architecture-flow">
+
+            <div class="arch-box">
+              <strong>Users</strong>
+              <span>Enterprise Users</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-box">
+              <strong>Endpoints</strong>
+              <span>Managed Devices</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-box">
+              <strong>DLP</strong>
+              <span>Detection & Control</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-box">
+              <strong>Investigation</strong>
+              <span>Alert Analysis</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-box">
+              <strong>Remediation</strong>
+              <span>Risk Reduction</span>
+            </div>
+
           </div>
 
-          <div class="job-content">
-
-            <h3>
-              IT Infrastructure Engineer
-            </h3>
-
-            <h4>
-              Team Computers
-            </h4>
-
-            <ul>
-              <li>Managed Intune and Scalefusion MDM.</li>
-              <li>Built AWS infrastructure using EC2, IAM, VPC and S3.</li>
-              <li>Automated user administration with PowerShell and AWS CLI.</li>
-            </ul>
-
-          </div>
-
-        </article>
-
-
-        <article class="job">
-
-          <div class="job-date">
-            OCT 2022 — SEP 2023
-          </div>
-
-          <div class="job-content">
-
-            <h3>
-              IT Support Engineer
-            </h3>
-
-            <h4>
-              Wipro
-            </h4>
-
-            <ul>
-              <li>Supported Citrix VDI, Active Directory and GPO.</li>
-              <li>Resolved endpoint, OS and network incidents within SLA.</li>
-            </ul>
-
-          </div>
-
-        </article>
+        </div>
 
       </div>
 
@@ -442,616 +1510,160 @@
 
     <!-- ================= PROJECTS ================= -->
 
-    <section id="projects" class="section">
+    <section id="projects">
 
-      <div class="section-label">
-        04 / PROJECTS
-      </div>
+      <div class="container">
 
-      <h2 class="section-title">
-        Selected <span>Work</span>
-      </h2>
+        <div class="section-header">
+          <div class="section-number">07 / SECURITY PROJECTS</div>
 
-      <div class="projects-grid">
+          <h2 class="section-title">
+            Labs, Research & Projects
+          </h2>
 
-
-        <!-- ================= PROJECT 01 ================= -->
-
-        <article class="project">
-
-          <div class="project-no">
-            01
-          </div>
-
-          <h3>
-            Enterprise DLP Implementation
-          </h3>
-
-          <p>
-            Implemented Endpoint, Email and Web DLP, created custom policies
-            and testing, and improved policy effectiveness.
+          <p class="section-description">
+            Practical projects demonstrating hands-on experience beyond
+            day-to-day enterprise responsibilities.
           </p>
-
-          <div class="tags">
-            <span>Endpoint DLP</span>
-            <span>Email DLP</span>
-            <span>Web DLP</span>
-          </div>
-
-        </article>
+        </div>
 
 
-        <!-- ================= PROJECT 02 ================= -->
-
-        <article class="project hardening-project">
-
-          <div class="project-no">
-            02
-          </div>
-
-          <div class="project-status">
-            <span>●</span> SECURITY HARDENING
-          </div>
-
-          <h3>
-            System Hardening
-          </h3>
-
-          <p>
-            Performed system hardening activities to reduce attack surface,
-            strengthen endpoint security controls, improve configuration
-            security and validate the effectiveness of defensive measures.
-          </p>
+        <div class="project-grid">
 
 
-          <div class="lab-details">
+          <article class="project">
 
-            <div class="lab-item">
-              <span class="lab-label">
-                FOCUS
-              </span>
-
-              <strong>
-                Attack Surface Reduction
-              </strong>
+            <div class="project-icon">
+              [ PROJECT_01 ]
             </div>
 
-            <div class="lab-item">
-              <span class="lab-label">
-                PLATFORM
-              </span>
-
-              <strong>
-                Windows Endpoints
-              </strong>
-            </div>
-
-            <div class="lab-item">
-              <span class="lab-label">
-                APPROACH
-              </span>
-
-              <strong>
-                Baseline &amp; Remediation
-              </strong>
-            </div>
-
-            <div class="lab-item">
-              <span class="lab-label">
-                OBJECTIVE
-              </span>
-
-              <strong>
-                Reduce Security Risk
-              </strong>
-            </div>
-
-          </div>
-
-
-          <div class="lab-research">
-      
-
-          <div class="lab-workflow">
-
-            <span>ASSESS</span>
-            <b>→</b>
-
-            <span>BASELINE</span>
-            <b>→</b>
-
-            <span>HARDEN</span>
-            <b>→</b>
-
-            <span>VALIDATE</span>
-            <b>→</b>
-
-            <span>MONITOR</span>
-            <b>→</b>
-
-            <span>DOCUMENT</span>
-
-          </div>
-
-
-          <div class="tags">
-
-            <span>Windows Hardening</span>
-            <span>Security Baseline</span>
-            <span>Endpoint Security</span>
-            <span>Access Control</span>
-            <span>Patch Management</span>
-            <span>Monitoring</span>
-
-          </div>
-
-        </article>
-
-
-        <!-- ================= PROJECT 03 ================= -->
-
-        <article class="project">
-
-          <div class="project-no">
-            03
-          </div>
-
-          <h3>
-            Endpoint Security
-          </h3>
-
-          <p>
-            Managed Device Control, supported endpoint hardening and improved
-            data protection across endpoint environments.
-          </p>
-
-          <div class="tags">
-            <span>Device Control</span>
-            <span>Hardening</span>
-            <span>Data Protection</span>
-          </div>
-
-        </article>
-
-
-        <!-- ================= PROJECT 04 ================= -->
-
-        <article class="project ad-lab-project">
-
-          <div class="project-no">
-            04
-          </div>
-
-          <div class="project-status">
-            <span>●</span> PERSONAL R&amp;D LAB
-          </div>
-
-          <h3>
-            Active Directory Security Research Lab
-          </h3>
-
-          <p>
-            Built an isolated home lab to practice Active Directory security,
-            Windows infrastructure administration, security testing and
-            defensive hardening. The environment is used for controlled
-            research, configuration analysis and documenting security findings.
-          </p>
-
-
-          <div class="lab-details">
-
-            <div class="lab-item">
-              <span class="lab-label">
-                ENVIRONMENT
-              </span>
-
-              <strong>
-                Isolated Virtual Lab
-              </strong>
-            </div>
-
-            <div class="lab-item">
-              <span class="lab-label">
-                PLATFORM
-              </span>
-
-              <strong>
-                Windows Server / AD
-              </strong>
-            </div>
-
-            <div class="lab-item">
-              <span class="lab-label">
-                FOCUS
-              </span>
-
-              <strong>
-                Security R&amp;D
-              </strong>
-            </div>
-
-            <div class="lab-item">
-              <span class="lab-label">
-                APPROACH
-              </span>
-
-              <strong>
-                Test → Analyze → Harden
-              </strong>
-            </div>
-
-          </div>
-
-
-          <div class="lab-research">
-
-          <div class="lab-workflow">
-
-            <span>BUILD</span>
-            <b>→</b>
-
-            <span>CONFIGURE</span>
-            <b>→</b>
-
-            <span>TEST</span>
-            <b>→</b>
-
-            <span>ANALYZE</span>
-            <b>→</b>
-
-            <span>HARDEN</span>
-            <b>→</b>
-
-            <span>RETEST</span>
-
-          </div>
-
-
-          <div class="tags">
-
-            <span>Active Directory</span>
-            <span>Windows Server</span>
-            <span>GPO</span>
-            <span>PowerShell</span>
-            <span>Security R&amp;D</span>
-            <span>Hardening</span>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= ALIGNMENT ================= -->
-
-    <section id="alignment" class="section">
-
-      <div class="section-label">
-        05 / ROLE FIT
-      </div>
-
-      <h2 class="section-title">
-        Role <span>Alignment</span>
-      </h2>
-
-      <p class="section-intro">
-        A snapshot of how my current experience aligns with key security
-        responsibilities.
-      </p>
-
-      <div class="alignment-card">
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            DLP Policy Design and Implementation
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar high" style="width:88%"></div>
-          </div>
-
-          <div class="percent">
-            88%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Endpoint Security Controls<br>
-            (Device Control &amp; Application Whitelisting)
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar high" style="width:78%"></div>
-          </div>
-
-          <div class="percent">
-            78%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Incident Investigation and Remediation Coordination
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar high" style="width:72%"></div>
-          </div>
-
-          <div class="percent">
-            72%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Security Compliance and Policy Management
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar high" style="width:75%"></div>
-          </div>
-
-          <div class="percent">
-            75%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Relevant Security Certifications
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar high" style="width:80%"></div>
-          </div>
-
-          <div class="percent">
-            80%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Endpoint Detection and Response (EDR/XDR)
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar low" style="width:35%"></div>
-          </div>
-
-          <div class="percent">
-            35%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Vulnerability Management and Patch Orchestration
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar medium" style="width:40%"></div>
-          </div>
-
-          <div class="percent">
-            40%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Incident Investigation Depth and Forensics
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar medium" style="width:55%"></div>
-          </div>
-
-          <div class="percent">
-            55%
-          </div>
-
-        </div>
-
-
-        <div class="alignment-row">
-
-          <div class="alignment-label">
-            Advanced Endpoint Security Architecture and Design
-          </div>
-
-          <div class="bar-wrap">
-            <div class="bar medium" style="width:50%"></div>
-          </div>
-
-          <div class="percent">
-            50%
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= SIGNALS ================= -->
-
-    <section id="signals" class="section">
-
-      <div class="section-label">
-        06 / EVIDENCE
-      </div>
-
-      <h2 class="section-title">
-        Top <span>Signals</span>
-      </h2>
-
-      <div class="signals-grid">
-
-
-        <article class="signal-card">
-
-          <div class="signal-icon">
-            ✓
-          </div>
-
-          <div>
-
-            <h3>
-              Policy tuning to reduce false positives
-            </h3>
+            <h3>Active Directory Security Lab</h3>
 
             <p>
-              Experience includes reducing false positives through policy
-              tuning, demonstrating iterative problem-solving around
-              operational policy logic.
+              Isolated Windows Active Directory environment for testing
+              identity, Group Policy, endpoint hardening and defensive controls.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">AD</span>
+              <span class="tag">GPO</span>
+              <span class="tag">Windows</span>
+            </div>
 
-        </article>
+          </article>
 
 
-        <article class="signal-card">
+          <article class="project">
 
-          <div class="signal-icon">
-            ✓
-          </div>
+            <div class="project-icon">
+              [ PROJECT_02 ]
+            </div>
 
-          <div>
-
-            <h3>
-              Custom DLP policy creation with testing cycles
-            </h3>
+            <h3>Windows Endpoint Hardening</h3>
 
             <p>
-              Custom policy creation and testing demonstrates ownership of
-              policy configuration, validation and the policy lifecycle.
+              Security-focused endpoint configuration covering system
+              hardening, application control and defensive configuration.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">Windows</span>
+              <span class="tag">Hardening</span>
+              <span class="tag">Security</span>
+            </div>
 
-        </article>
+          </article>
 
 
-        <article class="signal-card">
+          <article class="project">
 
-          <div class="signal-icon">
-            ✓
-          </div>
+            <div class="project-icon">
+              [ PROJECT_03 ]
+            </div>
 
-          <div>
-
-            <h3>
-              Cross-team incident coordination
-            </h3>
+            <h3>PowerShell Security Automation</h3>
 
             <p>
-              Coordinates remediation across SOC, infrastructure and business
-              teams, supporting communication of security findings and action.
+              Automation experiments focused on reducing repetitive
+              administrative tasks and improving endpoint operations.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">PowerShell</span>
+              <span class="tag">Automation</span>
+              <span class="tag">Windows</span>
+            </div>
 
-        </article>
+          </article>
 
 
-        <article class="signal-card">
+          <article class="project">
 
-          <div class="signal-icon">
-            ✓
-          </div>
+            <div class="project-icon">
+              [ PROJECT_04 ]
+            </div>
 
-          <div>
-
-            <h3>
-              Endpoint, Email, and Web DLP implementation
-            </h3>
+            <h3>AWS Security Lab</h3>
 
             <p>
-              Implemented DLP across three channels, showing practical
-              understanding of data flow and security controls across
-              multiple vectors.
+              Hands-on AWS environment covering IAM, EC2, VPC and S3
+              with a focus on secure cloud infrastructure.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">IAM</span>
+              <span class="tag">VPC</span>
+            </div>
 
-        </article>
+          </article>
 
 
-        <article class="signal-card">
+          <article class="project">
 
-          <div class="signal-icon">
-            ⌘
-          </div>
+            <div class="project-icon">
+              [ PROJECT_05 ]
+            </div>
 
-          <div>
-
-            <h3>
-              Hands-on Active Directory Security R&amp;D
-            </h3>
+            <h3>Microsoft Intune Lab</h3>
 
             <p>
-              Maintains an isolated Active Directory lab for controlled
-              experimentation with Windows infrastructure, security
-              configurations, access controls, detection and defensive
-              hardening.
+              Endpoint management and security configuration experiments
+              using Microsoft Intune and modern device-management concepts.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">Intune</span>
+              <span class="tag">MDM</span>
+              <span class="tag">Endpoint</span>
+            </div>
 
-        </article>
+          </article>
 
 
-        <article class="signal-card">
+          <article class="project">
 
-          <div class="signal-icon">
-            ✓
-          </div>
+            <div class="project-icon">
+              [ PROJECT_06 ]
+            </div>
 
-          <div>
-
-            <h3>
-              System hardening and security baseline validation
-            </h3>
+            <h3>DLP Policy Research</h3>
 
             <p>
-              Applies a structured hardening approach covering configuration
-              review, baseline assessment, remediation, validation and
-              post-hardening monitoring.
+              Research and documentation around DLP policy design,
+              classification, detection logic and policy optimization.
             </p>
 
-          </div>
+            <div class="tags">
+              <span class="tag">DLP</span>
+              <span class="tag">Trellix</span>
+              <span class="tag">Data Protection</span>
+            </div>
 
-        </article>
+          </article>
+
+
+        </div>
 
       </div>
 
@@ -1060,29 +1672,29 @@
 
     <!-- ================= CERTIFICATIONS ================= -->
 
-    <section id="certifications" class="section">
+    <section id="certifications">
 
-      <div class="section-label">
-        07 / CERTIFICATIONS
-      </div>
+      <div class="container">
 
-      <h2 class="section-title">
-        Credentials &amp; <span>Education</span>
-      </h2>
+        <div class="section-header">
+          <div class="section-number">08 / CERTIFICATIONS</div>
 
-      <div class="cert-grid">
+          <h2 class="section-title">
+            Certifications & Education
+          </h2>
+        </div>
 
-        <div class="cert">
 
-          <span class="cert-badge">
-            CC
-          </span>
+        <div class="cert-grid">
 
-          <div>
 
-            <h3>
-              ISC² Certified in Cybersecurity
-            </h3>
+          <div class="cert">
+
+            <div class="cert-badge">
+              CERT / ISC²
+            </div>
+
+            <h3>Certified in Cybersecurity</h3>
 
             <p>
               ISC²
@@ -1090,68 +1702,51 @@
 
           </div>
 
-        </div>
 
+          <div class="cert">
 
-        <div class="cert">
+            <div class="cert-badge">
+              CERT / AZ-500
+            </div>
 
-          <span class="cert-badge">
-            AZ
-          </span>
-
-          <div>
-
-            <h3>
-              Microsoft Azure Security Engineer
-            </h3>
+            <h3>Azure Security Engineer</h3>
 
             <p>
-              AZ-500
+              Microsoft Azure
             </p>
 
           </div>
 
-        </div>
 
+          <div class="cert">
 
-        <div class="cert">
+            <div class="cert-badge">
+              CERT / AZ-104
+            </div>
 
-          <span class="cert-badge">
-            AZ
-          </span>
-
-          <div>
-
-            <h3>
-              Microsoft Azure Administrator
-            </h3>
+            <h3>Azure Administrator</h3>
 
             <p>
-              AZ-104
+              Microsoft Azure
             </p>
 
           </div>
 
-        </div>
 
+          <div class="cert">
 
-        <div class="cert education">
+            <div class="cert-badge">
+              EDUCATION
+            </div>
 
-          <span class="cert-badge">
-            ED
-          </span>
-
-          <div>
-
-            <h3>
-              Bachelor's Degree
-            </h3>
+            <h3>Bachelor's Degree</h3>
 
             <p>
-              Mumbai University
+              University of Mumbai
             </p>
 
           </div>
+
 
         </div>
 
@@ -1160,113 +1755,169 @@
     </section>
 
 
-    <!-- ================= CONTACT ================= -->
+    <!-- ================= BUSINESS IMPACT ================= -->
 
-    <section id="contact" class="section contact">
+    <section>
 
-      <div class="section-label">
-        08 / CONTACT
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">09 / BUSINESS IMPACT</div>
+
+          <h2 class="section-title">
+            Security beyond technology
+          </h2>
+
+          <p class="section-description">
+            Effective security is not only about tools. It is about reducing
+            risk, improving operations and enabling the business securely.
+          </p>
+        </div>
+
+
+        <div class="impact-grid">
+
+
+          <div class="impact">
+
+            <h3>Risk Reduction</h3>
+
+            <p>
+              Strengthen endpoint and data protection controls to reduce
+              exposure to information-security risks.
+            </p>
+
+          </div>
+
+
+          <div class="impact">
+
+            <h3>Operational Efficiency</h3>
+
+            <p>
+              Apply automation and structured processes to reduce repetitive
+              administrative effort.
+            </p>
+
+          </div>
+
+
+          <div class="impact">
+
+            <h3>Incident Response</h3>
+
+            <p>
+              Investigate alerts, identify policy gaps and coordinate
+              remediation with technical stakeholders.
+            </p>
+
+          </div>
+
+
+          <div class="impact">
+
+            <h3>Cross-functional Collaboration</h3>
+
+            <p>
+              Work across security, infrastructure and business teams to
+              implement practical security controls.
+            </p>
+
+          </div>
+
+
+        </div>
+
       </div>
 
-      <h2 class="section-title">
-        Let's secure the<br>
-        <span>digital frontier.</span>
+    </section>
+
+
+    <!-- ================= SECURITY MINDSET ================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">10 / SECURITY MINDSET</div>
+
+          <h2 class="section-title">
+            Identify → Assess → Control<br />
+            Monitor → Investigate → Improve
+          </h2>
+
+          <p class="section-description">
+            I approach security as a continuous control lifecycle.
+            Policies need to be implemented, tested, monitored, investigated
+            and continuously improved based on operational findings.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+<!-- ===================================================== CONTACT / CTA ====================================================== --> 
+ <section id="contact"> <div class="container"> <div class="cta"> <div class="section-number"> 
+   <section id="contact">
+
+  <div class="container">
+
+    <div class="cta">
+
+      <div class="section-number">
+        CONTACT
+      </div>
+
+      <h2>
+        Let's secure the digital frontier.
       </h2>
 
       <p>
-        Open to conversations about cybersecurity, endpoint security,
-        DLP and professional opportunities.
+        Open to conversations about cybersecurity,
+        endpoint security, DLP and professional opportunities.
       </p>
 
-      <div class="contact-links">
+      <div class="buttons">
 
-
-        <a href="mailto:sp38740@gmail.com">
-
-          <span>
-            EMAIL
-          </span>
-
-          sp38740@gmail.com ↗
-
+        <a
+          href="mailto:sp38740@gmail.com"
+          class="btn btn-primary"
+        >
+          EMAIL ↗
         </a>
-
 
         <a
           href="https://www.linkedin.com/in/sandeep-prajapati-0105721b4/"
+          class="btn btn-outline"
           target="_blank"
-          rel="noopener"
-          class="linkedin-link">
-
-          <span class="likendin-whole">
-            LINKEDIN
-          </span>
-
-          <span class="linkedin-right">
-
-            <i class="fa-brands fa-linkedin"></i>
-
-            <span class="arrow-sub">
-              ↗
-            </span>
-
-          </span>
-
+          rel="noopener noreferrer"
+        >
+          LINKEDIN ↗
         </a>
-
 
         <a
           href="https://github.com/sandY302"
+          class="btn btn-outline"
           target="_blank"
-          rel="noopener">
-
-          <span>
-            GITHUB
-          </span>
-
-          <span class="contact-right">
-
-            <i class="fa-brands fa-github"></i>
-            ↗
-
-          </span>
-
+          rel="noopener noreferrer"
+        >
+          GITHUB ↗
         </a>
 
-
-        <a href="tel:+917208355335">
-
-          <span>
-            PHONE
-          </span>
-
-          +917208355335 ↗
-
+        <a
+          href="tel:+917208355335"
+          class="btn btn-outline"
+        >
+          PHONE ↗
         </a>
 
       </div>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
 
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer>
-
-    <span>
-      © <span id="year"></span> Sandeep Prajapati
-    </span>
-
-    <span>
-      Built for security. Designed for impact.
-    </span>
-
-  </footer>
-
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+</section>
